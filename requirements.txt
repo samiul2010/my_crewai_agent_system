@@ -1,6 +1,9 @@
 # ── Core Agent Framework ──────────────────────────────────────────────────────
-crewai>=0.80.0
-crewai-tools>=0.14.0
+crewai>=1.0.0
+crewai-tools>=1.0.0
+
+#crewai>=0.80.0
+#crewai-tools>=0.14.0
 
 # ── LLM Providers (LiteLLM handles all routing) ───────────────────────────────
 litellm>=1.55.0
