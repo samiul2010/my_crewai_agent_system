@@ -1,0 +1,37 @@
+name: Build and Run Docker Container
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15 # ১০ মিনিটের কাজের জন্য ১৫ মিনিট সময় রাখা নিরাপদ
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4 # সর্বশেষ স্থিতিশীল সংস্করণ
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3 # সর্বশেষ স্থিতিশীল সংস্করণ
+
+      - name: Build and run container
+        run: |
+          # ডকার ইমেজ বিল্ড করা
+          docker build -t my-app .
+          
+          # কন্টেইনার ব্যাকগ্রাউন্ডে রান করা
+          docker run -d --name running-app -p 7860:7860 my-app
+          
+          # কন্টেইনারটি সঠিকভাবে চালু হওয়ার জন্য অল্প সময় অপেক্ষা
+          sleep 10
+          
+          # ১০ মিনিট (৬০০ সেকেন্ড) রান করার পর স্বয়ংক্রিয়ভাবে থামিয়ে দেওয়া
+          echo "Application is running. Waiting for 10 minutes..."
+          sleep 600
+          
+          echo "Time is up. Stopping container."
+          docker stop running-app
+          
