@@ -1,0 +1,28 @@
+# ── Core Agent Framework ──────────────────────────────────────────────────────
+crewai>=0.80.0
+crewai-tools>=0.14.0
+
+# ── LLM Providers (LiteLLM handles all routing) ───────────────────────────────
+litellm>=1.55.0
+openai>=1.54.0          # OpenAI + OpenRouter + any OpenAI-compatible endpoint
+anthropic>=0.40.0       # Claude (Anthropic)
+google-generativeai>=0.8.0  # Gemini
+google-genai>=0.3.0          # Required by CrewAI's native Gemini provider
+
+# ── Telegram Bot (raw HTTP via requests — more reliable on HF Spaces) ─────────
+# (python-telegram-bot removed; uses 'requests' below instead)
+
+# ── Web status UI ──────────────────────────────────────────────────────────────
+flask>=3.0.0
+
+# ── Search ────────────────────────────────────────────────────────────────────
+duckduckgo-search>=6.3.0
+
+# ── Hugging Face ─────────────────────────────────────────────────────────────
+huggingface_hub>=0.26.0
+datasets>=3.0.0
+
+# ── Utilities ────────────────────────────────────────────────────────────────
+python-dotenv>=1.0.0
+pydantic>=2.9.0
+requests>=2.32.0
